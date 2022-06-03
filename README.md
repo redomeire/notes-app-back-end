@@ -74,6 +74,8 @@ When adding or edit note, your request body must contains data like this :
 
 ## Installation
 
+For now, i'm not hosting it yet. So, to run it, you have to install it in your localhost
+
 [clone blablablah]
 
 #### npm
