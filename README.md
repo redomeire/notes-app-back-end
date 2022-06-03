@@ -11,7 +11,7 @@ Enjoy!!
 
 #### Get all notes
 
-```http
+```bash
   GET /notes
 ```
 
@@ -21,7 +21,7 @@ Enjoy!!
 
 #### Get note by title
 
-```http
+```bash
   GET /notes/{title}
 ```
 
@@ -31,7 +31,7 @@ Enjoy!!
 
 #### Adding new note
 
-```http
+```bash
   POST /notes
 ```
 
@@ -42,7 +42,7 @@ Enjoy!!
 
 #### Editing note
 
-```http
+```bash
   PUT /notes/{id}
 ```
 | Body | Type     | Description                       |
@@ -52,7 +52,7 @@ Enjoy!!
 
 #### Delete note
 
-```http
+```bash
   DELETE /notes/{id}
 ```
 | Parameter | Type     | Description                       |
