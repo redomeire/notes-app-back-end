@@ -58,7 +58,7 @@ Enjoy!!
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| *id*   | `string` |  Deleting note based on the id |
+| *id*   | `string` |  **Required**. Deleting note based on the id |
 
 When adding or edit note, your request body must contains data like this :
 
