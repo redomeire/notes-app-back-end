@@ -45,7 +45,10 @@ const getAllNotesHandler = () => ({
 const getNoteByTitleHandler = (request, h) => {
   const { title } = request.params;
 
-  const note = notes.filter((n) => n.title === title);
+  const note = notes.filter((n) => { 
+    if(n.title.toLowerCase().includes(title))
+    return n
+  });
 
   if (note !== undefined) {
     return {
