@@ -18,7 +18,7 @@ Enjoy!!
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| none | `none` | **Required**. Getting All Notes | 
+| none | `none` | Getting All Notes | 
 
 #### Get note by title
 
