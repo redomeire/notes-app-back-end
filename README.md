@@ -4,6 +4,7 @@
 This repo contains Notes API that provide us basic feature of the API.
 In order to pass the 'Making beginner backend app' class, i made this project. 
 <br>
+<br>
 Enjoy!!
 
 
@@ -17,7 +18,7 @@ Enjoy!!
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| none | `string` | **Required**. Getting All Notes | 
+| none | `none` | **Required**. Getting All Notes | 
 
 #### Get note by title
 
@@ -35,7 +36,7 @@ Enjoy!!
   POST /notes
 ```
 
-| Body | Type     | Description                       |
+| Request Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | *title, tags, body, archived*    | `string, boolean` | **Required**. Add new note |
 
@@ -45,7 +46,7 @@ Enjoy!!
 ```bash
   PUT /notes/{id}
 ```
-| Body | Type     | Description                       |
+| Request Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | *title, tags, body, archived*    | `string, boolean` | **Required**. Editing note based on the id |
 
