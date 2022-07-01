@@ -1,5 +1,7 @@
 const { nanoid } = require('nanoid');
 const notes = require('./notes');
+const accounts = require('./account');
+const { response } = require('@hapi/hapi/lib/validation');
 // const archived = require('./archived');
 
 const addNoteHandler = (request, h) => {
@@ -45,9 +47,9 @@ const getAllNotesHandler = () => ({
 const getNoteByTitleHandler = (request, h) => {
   const { title } = request.params;
 
-  const note = notes.filter((n) => { 
-    if(n.title.toLowerCase().includes(title))
-    return n
+  const note = notes.filter((n) => {
+    if (n.title.toLowerCase().includes(title))
+      return n
   });
 
   if (note !== undefined) {
@@ -123,10 +125,95 @@ const deleteNoteByIdHandler = (request, h) => {
   return response;
 };
 
+const loginHandler = (request, h) => {
+  //login body
+  const { username, password } = request.payload;
+  const jwtToken = nanoid(20);
+
+  const isSuccess = accounts.filter((account) => {
+    return account.username === username && account.password === password;
+  }).length > 0;
+
+  if (isSuccess) {
+    const response = h.response({
+      status: 'success',
+      message: 'berhasil login',
+      data: {
+        token: jwtToken
+      }
+    })
+    response.code(201);
+    return response;
+  } else if(username === "" || password === "") {
+    const response = h.response({
+      status: 'fail',
+      message: 'password atau email tidak boleh kosong'
+    })
+
+    response.code(400);
+    return response;
+  }
+  const response = h.response({
+    status: 'fail',
+    message: 'username or password not match'
+  })
+  response.code(400);
+  return response;
+}
+const registerHandler = (request, h) => {
+  //login body
+  const id = nanoid(16);
+  const { username, password, email } = request.payload;
+  const createdAt = new Date().toISOString;
+  const newAccount = {
+    id: id,
+    username: username,
+    password: password,
+    email: email,
+    createdAt: createdAt
+  }
+
+  accounts.push(newAccount);
+  const isSuccess = accounts.filter((account) => account.id === id).length > 0;
+
+  if (isSuccess) {
+    const response = h.response({
+      status: 'success',
+      message: 'register berhasil',
+      data: {
+        noteId: id,
+      },
+    })
+    response.code(201);
+    return response;
+  }
+
+  const alreadyUsedUsername = accounts.filter((account, index) => accounts.indexOf(account) !== index)
+  //jika ada yang duplikat
+  if (alreadyUsedUsername !== null) {
+    const response = h.response({
+      status: 'fail',
+      message: 'username telah digunakan'
+    })
+    response.code(400);
+    return response;
+  }
+
+  const response = h.response({
+    status: 'fail',
+    message: 'register gagal',
+  });
+
+  response.code(400);
+  return response;
+}
+
 module.exports = {
   addNoteHandler,
   getAllNotesHandler,
   getNoteByTitleHandler,
   editNoteByIdHandler,
   deleteNoteByIdHandler,
+  registerHandler,
+  loginHandler
 };

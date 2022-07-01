@@ -1,5 +1,5 @@
 const {
-  addNoteHandler, getAllNotesHandler, editNoteByIdHandler, deleteNoteByIdHandler, getNoteByTitleHandler
+  addNoteHandler, getAllNotesHandler, editNoteByIdHandler, deleteNoteByIdHandler, getNoteByTitleHandler, loginHandler, registerHandler
 } = require('./handler');
 
 const routes = [
@@ -28,6 +28,16 @@ const routes = [
     path: '/notes/{id}',
     handler: deleteNoteByIdHandler,
   },
+  {
+    method: 'POST',
+    path: '/register',
+    handler: registerHandler,
+  },
+  {
+    method: 'POST',
+    path: '/login',
+    handler: loginHandler
+  }
 ];
 
 module.exports = routes;
